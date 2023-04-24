@@ -1,0 +1,34 @@
+@import url("pokedex.css");
+:root {
+    --font-principal: 'Roboto', sans-serif;
+    --cor-principal: #F4FFFF;
+    --cor-bulbasour: #49D0B0;
+    --cor-tipo-bulbasaur: #60E1CA;
+    --cor-charmander: #E27B6F;
+    --cor-tipo-charmander: #FD8584;
+    --cor-squirtle: #76BEFE;
+    --cor-tipo-squirtle: #8ED0FD;
+}
+
+* {
+    font-family: var(--font-principal);
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    background-color: #F6F8FC;
+}
+
+main {
+    padding: 1em;
+    background-color: #fff;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+
+
+
+
