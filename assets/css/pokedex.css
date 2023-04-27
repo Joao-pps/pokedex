@@ -25,6 +25,14 @@
     background-color: var(--cor-squirtle);
 }
 
+.bug {
+    background-color: rgb(14, 211, 14);
+}
+
+.type--bug {
+    background-color: rgb(26, 168, 26)
+}
+
 .type--water {
     background-color: var(--cor-tipo-squirtle);
 }
