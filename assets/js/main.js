@@ -9,7 +9,7 @@ function pokemonConvertToHtlm(pokemon) {
             <span class="name">${pokemon.name}</span>
             <div class="detalhes">
                 <ol class="types">
-                    ${pokemon.types.map((type) => `<li class="type type--${pokemon.type}">${type}</li>`).join('')}
+                    ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
                 </ol>
                 <img class="article__imagem" src="${pokemon.photo}" alt="${pokemon.name}">
             </div>
