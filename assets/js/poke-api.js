@@ -1,9 +1,11 @@
 const pokeApi = {};
 
 function convertPokeApiDetailToPokemon(pokeDetail) {
+    // console.log(pokeDetail)
     const pokemon = new Pokemon();
     pokemon.name = pokeDetail.name;
     pokemon.number = pokeDetail.id;
+    pokemon.status = pokeDetail.stats.map((statusType) => statusType);
 
     const types = pokeDetail.types.map((typeSlot) => typeSlot.type.name);
     const [type] = types; //fazendo um destructin, basicamente a variavel vai ficar com a primeira ocorrencia
@@ -12,7 +14,6 @@ function convertPokeApiDetailToPokemon(pokeDetail) {
     pokemon.types = types;
     pokemon.type = type;
     pokemon.photo = pokemonImage;
-
     return pokemon;
 }
 
