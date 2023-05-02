@@ -23,16 +23,17 @@ function loadPokemonsItens(offset, limit) {
     pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
 
         const newHtmlStatus = pokemons.map((status) => `
-            <span class="number">${status.number}</span>
-            <span class="name">${status.name}</span>
+            <ul class="statusPokemon ${status.name}">
+                <span class="number">${status.number}</span>
+                <span class="name">${status.name}</span>
                 <li class="lista-box">
                     <img class="article__imagem" src="${status.photo}" alt="${status.name}">
-                     <ol class="lista-status">
-                         ${status.status.map((stat) => `<li>${stat.stat.name}: <span>${stat.base_stat}</span></li>`).join('')}
+                    <ol class="lista-status">
+                        ${status.status.map((stat) => `<li>${stat.stat.name}: <span>${stat.base_stat}</span></li>`).join('')}
                     </ol>
                 </li>
-        `)
-        console.log(newHtmlStatus)
+            </ul>
+        `).join('')
         const newHtml = pokemons.map((pokemon) => `
             <article class="pokemon ${pokemon.type} ${pokemon.name}">
                 <span class="number">${pokemon.number}</span>
@@ -47,24 +48,27 @@ function loadPokemonsItens(offset, limit) {
             </article>`
         ).join('');  //simplificando tudo.
         pokemonList.innerHTML += newHtml
+        statusPokemons.innerHTML = newHtmlStatus;
         const htmlStatus = document.querySelectorAll(".pokemon");
+        const statusCard = document.querySelectorAll(".statusPokemon");
+
         for (let i = 0; i < htmlStatus.length; i++) {
-            const lis = htmlStatus[i];
-            for (let i = 0; i < newHtmlStatus.length; i++) {
-                const ele = newHtmlStatus[i];
-                console.log(ele)
-            }
-            lis.addEventListener("click" , (e) => {
-                console.log(lis.classList[2]);
-                if (lis.classList[2] === 'bulbasaur') {
-                    console.log('entrou')
-                    statusPokemons.innerHTML = newHtmlStatus[0];
-                    statusPokemons.classList.toggle("display");
-                } else {
-                    console.log('erro')
+            const card = htmlStatus[i];
+            const cardClass = card.classList[2];
+            card.addEventListener("click", (e) => {
+                for (let j = 0; j < statusCard.length; j++) {
+                    const status = statusCard[j];
+                    const statusClass = status.classList[1];
+                    if (cardClass === statusClass) {
+                        // o "card" clicado corresponde ao "status" atual
+                        statusPokemons.innerHTML = status.outerHTML;
+                        statusPokemons.classList.toggle("display");
+                        break; // sai do loop de "status" após encontrar uma correspondência
+                    }
                 }
-            })
+            });
         }
+
         // pokemonList.addEventListener('click', () => {
         //     preeStatus()
         // } ) 
