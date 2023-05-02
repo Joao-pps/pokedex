@@ -22,19 +22,19 @@ let maxRecord = 151;  //quantidades de pokemons da primeira geração
 function loadPokemonsItens(offset, limit) {
     pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
 
-        const newHtmlStatus = pokemons.map((teste) => `
-            <span class="number">${teste.number}</span>
-            <span class="name">${teste.name}</span>
-        <li class="lista-box">
-            <img class="article__imagem" src="${teste.photo}" alt="${teste.name}">
-            <ol class="lista-status">
-                ${teste.status.map((stat) => `<li>${stat.stat.name}: <span>${stat.base_stat}</span></li>`).join('')}
-            </ol>
-        </li>
-        `).join('')
-
+        const newHtmlStatus = pokemons.map((status) => `
+            <span class="number">${status.number}</span>
+            <span class="name">${status.name}</span>
+                <li class="lista-box">
+                    <img class="article__imagem" src="${status.photo}" alt="${status.name}">
+                     <ol class="lista-status">
+                         ${status.status.map((stat) => `<li>${stat.stat.name}: <span>${stat.base_stat}</span></li>`).join('')}
+                    </ol>
+                </li>
+        `)
+        console.log(newHtmlStatus)
         const newHtml = pokemons.map((pokemon) => `
-            <article class="pokemon ${pokemon.type} pokemon__${pokemon.name}">
+            <article class="pokemon ${pokemon.type} ${pokemon.name}">
                 <span class="number">${pokemon.number}</span>
                 <span class="name">${pokemon.name}</span>
 
@@ -47,15 +47,31 @@ function loadPokemonsItens(offset, limit) {
             </article>`
         ).join('');  //simplificando tudo.
         pokemonList.innerHTML += newHtml
-        pokemonList.onclick = function () {
-            preeStatus()
+        const htmlStatus = document.querySelectorAll(".pokemon");
+        for (let i = 0; i < htmlStatus.length; i++) {
+            const lis = htmlStatus[i];
+            for (let i = 0; i < newHtmlStatus.length; i++) {
+                const ele = newHtmlStatus[i];
+                console.log(ele)
+            }
+            lis.addEventListener("click" , (e) => {
+                console.log(lis.classList[2]);
+                if (lis.classList[2] === 'bulbasaur') {
+                    console.log('entrou')
+                    statusPokemons.innerHTML = newHtmlStatus[0];
+                    statusPokemons.classList.toggle("display");
+                } else {
+                    console.log('erro')
+                }
+            })
         }
-        // console.log(teste)
-        console.log()
-        function preeStatus() {
-            statusPokemons.innerHTML = newHtmlStatus
-            statusPokemons.classList.toggle("display");
-        }
+        // pokemonList.addEventListener('click', () => {
+        //     preeStatus()
+        // } ) 
+        // function preeStatus(elemento) {
+        //     statusPokemons.innerHTML = newHtmlStatus
+        //     statusPokemons.classList.toggle("display");
+        // }
     })
 
 }
