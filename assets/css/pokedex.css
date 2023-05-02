@@ -193,6 +193,11 @@
     .pokemons {
         grid-template-columns: 1fr
     }
+
+    .statusPokemon {
+        position: initial;
+        width: 100%;
+    }
 }
 
 @media screen and (min-width: 378px) {
@@ -204,6 +209,11 @@
 @media screen and (min-width: 576px) {
     .pokemons {
         grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .statusPokemon {
+        width: 60%;
+        margin: 1em auto;
     }
 }
 
