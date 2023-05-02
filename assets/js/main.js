@@ -27,7 +27,10 @@ function loadPokemonsItens(offset, limit) {
                 <span class="number">${status.number}</span>
                 <span class="name">${status.name}</span>
                 <li class="lista-box">
-                    <img class="article__imagem" src="${status.photo}" alt="${status.name}">
+                    <ol class="lista-status">
+                        ${status.types.map((type) => `<li class="type ${type} type--teste">${type}</li>`).join('')}
+                    </ol>
+                    <img class="article__imagem imagem--status" src="${status.photo}" alt="${status.name}">
                     <ol class="lista-status">
                         ${status.status.map((stat) => `<li>${stat.stat.name}: <span>${stat.base_stat}</span></li>`).join('')}
                     </ol>
@@ -59,7 +62,7 @@ function loadPokemonsItens(offset, limit) {
                 for (let j = 0; j < statusCard.length; j++) {
                     const status = statusCard[j];
                     const statusClass = status.classList[1];
-                    if (cardClass === statusClass) {
+                    if (statusClass != isNaN && cardClass === statusClass) {
                         // o "card" clicado corresponde ao "status" atual
                         statusPokemons.innerHTML = status.outerHTML;
                         statusPokemons.classList.toggle("display");

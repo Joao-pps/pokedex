@@ -26,31 +26,29 @@
     <main>
         <h1>Pokedex</h1>
         <section id="pokemonList" class="pokemons">
-            <!-- <article class="pokemon pokemon__bulbasour">
-                <span class="number">#001</span>
-                <span class="name">Bulbasaur</span>
+            <!-- <article class="pokemon ${pokemon.type} ${pokemon.name}">
+                <span class="number">${pokemon.number}</span>
+                <span class="name">${pokemon.name}</span>
+
                 <div class="detalhes">
                     <ol class="types">
-                        <li class="type type--bulbasor">grass</li>
-                        <li class="type type--bulbasor">poison</li>
+                        ${pokemon.types.map((type) => `<li class="type ${type}">${type}</li>`).join('')}
                     </ol>
-                    <img class="article__imagem" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg" alt="Bulbasor">
+                    <img class="article__imagem" src="${pokemon.photo}" alt="${pokemon.name}">
                 </div>
-            </article> -->
+            </article>`-->
         </section>
         <div class="display" id="status">
-            <!-- <ul class="statusPokemon">
-                <span class="number">01</span>
-                <span class="name">bulbasaur</span>
+            <!-- <ul class="statusPokemon ${status.name}">
+                <span class="number">${status.number}</span>
+                <span class="name">${status.name}</span>
                 <li class="lista-box">
-                    <img class="article__imagem" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg" alt="">
                     <ol class="lista-status">
-                        <li>HP <span>teste</span></li>
-                        <li>HP <span></span></li>
-                        <li>HP <span></span></li>
-                        <li>HP <span></span></li>
-                        <li>HP <span></span></li>
-                        <li>HP <span></span></li>
+                        ${status.types.map((type) => `<li class="type ${type} type--teste">${type}</li>`).join('')}
+                    </ol>
+                    <img class="article__imagem imagem--status" src="${status.photo}" alt="${status.name}">
+                    <ol class="lista-status">
+                        ${status.status.map((stat) => `<li>${stat.stat.name}: <span>${stat.base_stat}</span></li>`).join('')}
                     </ol>
                 </li>
             </ul> -->
